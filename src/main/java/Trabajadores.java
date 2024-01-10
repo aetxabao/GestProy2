@@ -15,7 +15,7 @@ public class Trabajadores {
     }
 
     public static void mostrar() {
-        // TODO 61: Mostrar la información del trabajador según el formato dado utilizando printf
+        // TODO 61: DONE Mostrar la información del trabajador según el formato dado utilizando printf
         // 2 espacios para el número del trabajador, luego un punto, un espacio y la representación del trabajador
         // 12345678901234567890
         //  1. Aitor     90 E.
@@ -26,9 +26,9 @@ public class Trabajadores {
         //  6. Edurne    20 E.
         //  7. Tasio     20 E.
         //  8. Iosu      20 E.
-
-
-
+        for (int i = 1; i <= Ctes.NUM_TRABAJADORES_EMPRESA; i++) {
+            System.out.printf("%2d. %s\n", i, getTrabajador(i));
+        }
     }
 
 }

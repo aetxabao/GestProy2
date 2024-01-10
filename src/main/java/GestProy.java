@@ -29,8 +29,8 @@ public class GestProy {
     // endregion
 
     public void terminarProyecto(int numProyecto) {
-        // TODO 31: Terminar proyecto
-
+        // TODO 31: DONE Terminar proyecto
+        setProyecto(numProyecto, null);
     }
 
     public boolean puedeHaberMasProyectos() {
@@ -43,72 +43,65 @@ public class GestProy {
 
     public int getCantidadProyectosActivos() {
         int cantidad = 0;
-        // TODO 32: Contar el número de proyectos activos utilizando un bucle
-
-
-
-
-
-
+        // TODO 32: DONE Contar el número de proyectos activos utilizando un bucle
+        for (int i = 1; i <= getMaxNumProyectos(); i++) {
+            if (getProyecto(i) != null) {
+                cantidad ++;
+            }
+        }
         return cantidad;
     }
 
     public boolean addHorasProyecto(int numeroProyecto, int numeroHoras) {
-        // TODO 33: Añadir horas al número de proyecto indicado
-        // Si el proyecto no existe devolver false, sino true tras asignar las horas
-
-
-
-
-
+        // TODO 33: DONE Añadir horas al número de proyecto indicado
+        // Si el proyecto no existe devolver false,
+        // sino true tras asignar las horas
+        Proyecto proyecto = getProyecto(numeroProyecto);
+        if (proyecto == null) {return false;}
+        proyecto.addHoras(numeroHoras);
         return true;
     }
 
     public int addProyectoNuevo(String nombreProyecto, int presupuesto) {
-        // TODO 34: Agregar el proyecto si hay hueco utilizando un bucle
-
-
-
-
-
-
-
-
+        // TODO 34: DONE Agregar el proyecto si hay hueco utilizando un bucle
+        for (int i = 1; i <= getMaxNumProyectos(); i++) {
+            if (getProyecto(i) == null) {
+                setProyecto(i, new Proyecto(nombreProyecto, presupuesto));
+                return i;
+            }
+        }
         return 0;
     }
 
     public boolean addParticipanteProyecto(int numProyecto, int numTrabajador) {
-        // TODO 35: Añadir al proyecto el participante validando que el proyecto y el trabajador existe
+        // TODO 35: DONE Añadir al proyecto el participante
+        // validando que el proyecto y el trabajador existe
         // si el trababajador o proyecto no existe devolver false
         // si el proyecto y el trabajador existen pero no admiten más trabajadores devolver false
-
-
-
-
-
-
-
-
+        Proyecto proyecto = getProyecto(numProyecto);
+        if (proyecto == null) { return false; }
+        Trabajador trabajador = Trabajadores.getTrabajador(numTrabajador);
+        if (trabajador == null) { return false; }
+        proyecto.addParticipante(trabajador);
         return true;
     }
 
     public void mostrarProyectos() {
-        // TODO 36: Mostrar los proyectos junto con su número de proyecto utilizando un bucle
-
-
-
-
-
-
-
+        // TODO 36: DONE Mostrar los proyectos junto con su número de proyecto
+        //  utilizando un bucle
+        for (int i = 1; i <= getMaxNumProyectos(); i++) {
+            Proyecto proyecto = getProyecto(i);
+            if (proyecto!=null) {
+                System.out.println(i + ". " + proyecto);
+            }
+        }
     }
 
     public void mostrarEquipoProyecto(int numProyecto) {
-        // TODO 37: Mostrar el equipo si existe
-
-
-
-
+        // TODO 37: DONE Mostrar el equipo si existe
+        Proyecto proyecto = getProyecto(numProyecto);
+        if (proyecto == null) { return; }
+        proyecto.mostrarEquipo();
     }
 
     public void setLiderProyecto(int numProyecto, int numParticipante) {

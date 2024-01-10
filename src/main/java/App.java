@@ -3,8 +3,8 @@ public class App {
     private GestProy gestProy;
 
     public App() {
-        // TODO 11: Inicializar atributos
-
+        // TODO 11: DONE Inicializar atributos
+        gestProy = new GestProy();
     }
 
     public void run() {
@@ -46,16 +46,25 @@ public class App {
 
         System.out.println("Define el equipo de desarrollo:");
 
-        // TODO 12: Mientras no se indique la opción 0 para terminar y se puedan añadir participantes hacerlo
+        // TODO 12: DONE
+        // Mientras no se indique la opción 0 para terminar y
+        // se puedan añadir participantes hacerlo
         // mostrar la lista de trabajadores, leer el número del trabajador y añadirlo al proyecto
         // si no se puede agregar el participante al proyecto salir del bucle
 
-
-
-
-
-
-
+        while (true) {
+            // mostrar la lista de trabajadores,
+            gestProy.mostrarTrabajadoresEmpresa();
+            // leer el número del trabajador y
+            int numTrabajador = Gui.leerNumero("Número del trabajador (0 para terminar):");
+            // Mientras no se indique la opción 0 para terminar
+            if (numTrabajador == 0) { break; }
+            // si se puedan añadir participantes hacerlo
+            // añadirlo al proyecto
+            if (!gestProy.addParticipanteProyecto(numProyecto, numTrabajador)) {
+                System.out.println("No se ha podido añadir");
+            }
+        }
 
         System.out.println("Define el líder del equipo:");
         gestProy.mostrarEquipoProyecto(numProyecto);
@@ -67,8 +76,8 @@ public class App {
 
     private void terminarProyecto() {
         int numProyecto = Gui.leerNumero("Indica el número del proyecto a cerrar: ");
-        // TODO 13: Terminar el proyecto
-
+        // TODO 13: DONE Terminar el proyecto
+        gestProy.terminarProyecto(numProyecto);
         System.out.println("Hecho.");
     }
 
@@ -82,8 +91,8 @@ public class App {
     }
 
     private void mostrarProyectos() {
-        // TODO 14: Mostrar proyectos
-
+        // TODO 14: DONE Mostrar proyectos
+        gestProy.mostrarProyectos();
     }
 
 }

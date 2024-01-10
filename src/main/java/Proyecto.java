@@ -7,12 +7,15 @@ public class Proyecto {
 
     // region constructores
     public Proyecto(String nombre){
-        // TODO 41: Constructor 1 Proyecto
-
+        // TODO 41: DONE Constructor 1 Proyecto
+        this(nombre, 0);
     }
     public Proyecto(String nombre, int presupuesto) {
-        // TODO 42: Constructor 2 Proyecto
-
+        // TODO 42: DONE Constructor 2 Proyecto
+        this.nombre = nombre;
+        equipo = new Equipo();
+        horas = 0;
+        this.presupuesto = presupuesto;
     }
     // endregion
 
@@ -64,12 +67,12 @@ public class Proyecto {
         equipo.setLider(numeroParticipante);
     }
     public void mostrarEquipo() {
-        // TODO 43: Mostrar el equipo
-
+        // TODO 43: DONE Mostrar el equipo
+        equipo.mostrar();
     }
 
     public String toString() {
-        // TODO 44: Mostrar la información del proyecto según el formato dado utilizando String.format
+        // TODO 44: DONE  Mostrar la información del proyecto según el formato dado utilizando String.format
         // 20 huecos para el nombre del proyecto y 10 para el nombre del líder alineados a la izquierda
         // 10 huecos para cada número entero alineados a la derecha. Después de las horas poner " h."
         // los tres últimos valores se corresponden con el precio de coste, el presupuesto y la diferencia
@@ -77,11 +80,18 @@ public class Proyecto {
         // 12345678901234567890123456789012345678901234567890123456789012345678901234567890
         // |                   |        |         |            |         |         |
         // CartasCoches        Aitor             10 h.      1300      1200      -100
+        String nombreLider = "";
         Trabajador lider = equipo.getLider();
-
-
-
-        return "";
+        if (lider != null) {
+            nombreLider = lider.getNombre();
+        }
+        return String.format("%-20s%-20s%-8d h.%10d%10d%10d",
+                nombre,
+                nombreLider,
+                horas,
+                presupuesto,
+                getPrecio(),
+                presupuesto - getPrecio());
     }
 
 }
